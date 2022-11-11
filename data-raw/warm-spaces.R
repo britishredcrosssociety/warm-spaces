@@ -1,3 +1,4 @@
+# Data from ad-hoc/analysis/cost-of-living
 warm_spaces <-
   readr::read_rds("data-raw/imported-data/all-warm-spaces-geocoded.rds")
 
