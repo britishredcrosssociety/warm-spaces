@@ -1,8 +1,6 @@
 mapUI <- function(id) {
   leafletOutput(
-    NS(id, "map"),
-    width = "100%",
-    height = "100%"
+    NS(id, "map")
   )
 }
 
@@ -22,19 +20,28 @@ mapServer <- function(id) {
             L.control.zoom({position:'bottomleft'}).addTo(this);
              }"
           ) |> 
+          addPolygons(
+            data = isochrones,
+            weight = 0.7,
+            opacity = 0.5,
+            color = "red",
+            dashArray = "0.1",
+            fillOpacity = 0.2,
+ 
+          ) |> 
           addAwesomeMarkers(
               data = warm_spaces,
               layerId = ~Address,
               group = "base",
               label = ~Address,
               options = markerOptions(
-                opacity = .8,
+                opacity = .5,
                 riseOnHover = TRUE
               ),
               icon = awesomeIcons(
-                icon = "hospital-o",
+                icon = "group",
                 library = "fa",
-                markerColor = "lightgray",
+                markerColor = "red",
                 iconColor = "#FFFFFF"
               )
             )
