@@ -17,7 +17,7 @@ ui <- function() {
       "table",
       alignmen = "center",
       has_border = TRUE,
-      tags$p("Table goes here")
+      tableUI("table")
     )
   )
 }
