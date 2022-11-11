@@ -12,6 +12,12 @@ ui <- function() {
       alignment = "center",
       has_border = TRUE,
       mapUI("map")
+    ),
+    grid_card(
+      "table",
+      alignmen = "center",
+      has_border = TRUE,
+      tags$p("Table goes here")
     )
   )
 }
