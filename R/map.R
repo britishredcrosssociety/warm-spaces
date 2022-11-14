@@ -1,11 +1,11 @@
 mapUI <- function(id) {
   leafletOutput(
     NS(id, "map"),
-    height = 1000
+    height = 900
   )
 }
 
-mapServer <- function(id) {
+mapServer <- function(id, selected) {
   moduleServer(id, function(input, output, session) {
     output$map <-
       renderLeaflet({
@@ -32,6 +32,7 @@ mapServer <- function(id) {
           addPolygons(
             data = boundaries_ltla20,
             label = ~ltla20_name,
+            layerId = ~ltla20_code,
             weight = 0.7,
             opacity = 0.5,
             color = "#5C747A",
@@ -62,6 +63,10 @@ mapServer <- function(id) {
             )
           )
       })
+
+    observeEvent(input$map_shape_click, {
+      selected$area <- input$map_shape_click$id
+    })
   })
 }
 

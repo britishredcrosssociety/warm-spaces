@@ -1,4 +1,12 @@
 server <- function(input, output, session) {
-  mapServer("map")
+
+  # Global value to track state between map and table
+  selected <- reactiveValues(area = vector())
+
+  # observe({
+  #   print(selected$area)
+  # })
+
+  mapServer("map", selected = selected)
   tableServer("table")
 }
