@@ -4,11 +4,11 @@ tableUI <- function(id) {
   )
 }
 
-tableServer <- function(id) {
+tableServer <- function(id, selected) {
   moduleServer(id, function(input, output, session) {
-    output$table <- renderDT(
+    output$table <- renderDT({
       datatable(
-        ltla_proportions |> 
+        ltla_proportions |>
           select(
             `Local Authortiy` = ltla20_name,
             `Region` = region20_name,
@@ -17,9 +17,9 @@ tableServer <- function(id) {
             `Financially vulnerable postcodes within a 30 min walk of a warm space` = prop_within_30_min
           ),
         rownames = FALSE
-      ) |> 
-      formatPercentage(c(4,5), 1)
-    )
+      ) |>
+        formatPercentage(c(4, 5), 1)
+    })
   })
 }
 
