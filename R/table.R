@@ -8,16 +8,14 @@ tableServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     output$table <- renderDT(
       datatable(
-        ltla_need |>
-          mutate(proportion = proportion * 100) |>
-          mutate(proportion = round(proportion, 1)) |> 
+        ltla_proportions |> 
           select(
             `Local Authortiy` = ltla20_name,
-            `% financially vulnerable postcodes not within walking distance of a warm space` = proportion,
-            `Funding status` = funding
+            `Funding status` = funding,
+            `Financially vulnerable postcodes NOT within a 30 min walk of a warm space (%)` = prop_outside_30_min,
+            `Financially vulnerable postcodes within a 30 min walk of a warm space (%)` = prop_within_30_min
           ),
-        rownames = FALSE,
-        options = list(dom = "t", pageLength = 100)
+        rownames = FALSE
       )
     )
   })
