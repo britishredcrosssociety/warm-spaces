@@ -32,6 +32,9 @@ ltla_proportions <- ltla_outside_distance |>
   mutate(
     across(starts_with("prop_"), ~ .x * 100),
     across(starts_with("prop_"), ~ round(.x, 1)),
-  )
+  ) |>
+  group_by(region20_name) |>
+  arrange(desc(prop_outside_30_min), .by_group = TRUE) |>
+  ungroup()
 
 usethis::use_data(ltla_proportions, overwrite = TRUE)
