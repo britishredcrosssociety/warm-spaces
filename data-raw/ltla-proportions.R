@@ -16,6 +16,7 @@ ltla_outside_distance <-
     ltla20_code,
     ltla20_name,
     region20_name,
+    funding,
     prop_outside_30_min = proportion
   )
 
@@ -27,6 +28,10 @@ ltla_proportions <- ltla_outside_distance |>
       0,
       prop_within_30_min
     )
+  ) |>
+  mutate(
+    across(starts_with("prop_"), ~ .x * 100),
+    across(starts_with("prop_"), ~ round(.x, 1)),
   )
 
 usethis::use_data(ltla_proportions, overwrite = TRUE)
