@@ -8,5 +8,5 @@ server <- function(input, output, session) {
   # })
 
   mapServer("map", selected = selected)
-  tableServer("table")
+  tableServer("table", selected = selected)
 }
