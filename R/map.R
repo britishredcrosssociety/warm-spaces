@@ -20,7 +20,7 @@ mapServer <- function(id) {
             "function(el, x) {
             L.control.zoom({position:'bottomleft'}).addTo(this);
              }"
-          ) |> 
+          ) |>
           addPolygons(
             data = isochrones,
             weight = 0.7,
@@ -28,24 +28,39 @@ mapServer <- function(id) {
             color = "red",
             dashArray = "0.1",
             fillOpacity = 0.2,
- 
-          ) |> 
-          addAwesomeMarkers(
-              data = warm_spaces,
-              layerId = ~Address,
-              group = "base",
-              label = ~Address,
-              options = markerOptions(
-                opacity = .5,
-                riseOnHover = TRUE
-              ),
-              icon = awesomeIcons(
-                icon = "group",
-                library = "fa",
-                markerColor = "red",
-                iconColor = "#FFFFFF"
-              )
+          ) |>
+          addPolygons(
+            data = boundaries_ltla20,
+            label = ~ltla20_name,
+            weight = 0.7,
+            opacity = 0.5,
+            color = "#5C747A",
+            dashArray = "0.1",
+            fillOpacity = 0.1,
+            highlight = highlightOptions(
+              weight = 5,
+              color = "#5C747A",
+              dashArray = "",
+              fillOpacity = 0.1,
+              bringToFront = TRUE
             )
+          ) |>
+          addAwesomeMarkers(
+            data = warm_spaces,
+            layerId = ~Address,
+            group = "base",
+            label = ~Address,
+            options = markerOptions(
+              opacity = .5,
+              riseOnHover = TRUE
+            ),
+            icon = awesomeIcons(
+              icon = "group",
+              library = "fa",
+              markerColor = "red",
+              iconColor = "#FFFFFF"
+            )
+          )
       })
   })
 }
